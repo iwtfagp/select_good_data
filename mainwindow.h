@@ -15,7 +15,7 @@
 #include <qwt_legend.h>
 #include <qwt_plot_renderer.h>
 
-
+#include "myqwtplot.h"
 
 namespace Ui {
 class MainWindow;
@@ -32,7 +32,6 @@ public:
 
 private slots:
     void on_pushButton_read_file_clicked();
-    void function(QPoint actualMousePosition);
     void selected(const QPointF& pos);
 
 

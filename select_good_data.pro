@@ -13,9 +13,11 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    myqwtplot.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    myqwtplot.h
 
 FORMS    += mainwindow.ui
 

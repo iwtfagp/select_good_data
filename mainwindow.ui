@@ -22,7 +22,7 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
-     <widget class="QwtPlot" name="qwtPlot">
+     <widget class="QwtPlot" name="qwtPlot_left_hip">
       <property name="minimumSize">
        <size>
         <width>400</width>
@@ -38,7 +38,7 @@
      </widget>
     </item>
     <item row="0" column="1">
-     <widget class="QwtPlot" name="qwtPlot_2">
+     <widget class="QwtPlot" name="qwtPlot_right_hip">
       <property name="minimumSize">
        <size>
         <width>400</width>
@@ -54,7 +54,7 @@
      </widget>
     </item>
     <item row="1" column="0">
-     <widget class="QwtPlot" name="qwtPlot_3">
+     <widget class="QwtPlot" name="qwtPlot_left_knee">
       <property name="minimumSize">
        <size>
         <width>400</width>
@@ -70,7 +70,7 @@
      </widget>
     </item>
     <item row="1" column="1">
-     <widget class="QwtPlot" name="qwtPlot_4">
+     <widget class="QwtPlot" name="qwtPlot_right_knee">
       <property name="minimumSize">
        <size>
         <width>400</width>
