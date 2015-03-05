@@ -37,7 +37,7 @@ signals:
 private:
     QwtPlot *qwt_myQwtplot;
     bool b_max_selected;
-    double d_marker_min, d_marker_max;
+    int i_marker_min, i_marker_max;
     QwtPlotMarker *qwt_marker_max, *qwt_marker_min;
     QwtPlotCurve *qwt_curve;
     QwtPlotShapeItem *qwt_item;

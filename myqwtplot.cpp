@@ -11,8 +11,8 @@ MyQwtPlot::MyQwtPlot(const QString &title, QwtPlot *qwtplot)
 
 
     b_max_selected = false;
-    d_marker_max = 0;
-    d_marker_min = 0;
+    i_marker_max = 0;
+    i_marker_min = 0;
 
     qwt_curve = new QwtPlotCurve();
 
@@ -60,31 +60,36 @@ void MyQwtPlot::setMaxline(bool select)
 }
 void MyQwtPlot::selectedFun(const QPointF& pos)
 {
-
     if(b_max_selected)
-        d_marker_max = pos.x();
+        i_marker_max = pos.x();
     else
-        d_marker_min = pos.x();
+        i_marker_min = pos.x();
 
-    if(d_marker_max < d_marker_min){
-        double temp = d_marker_min;
-        d_marker_min = d_marker_max;
-        d_marker_max = temp;
+    if(i_marker_max < i_marker_min){
+        double temp = i_marker_min;
+        i_marker_min = i_marker_max;
+        i_marker_max = temp;
     }
 
-//    qDebug()<<"marker_max = "<<d_marker_max;
-//    qDebug()<<"marker_min = "<<d_marker_min;
+//    qDebug()<<"marker_max = "<<i_marker_max;
+//    qDebug()<<"marker_min = "<<i_marker_min;
 
-    qDebug()<<"b_max_selected = "<<b_max_selected;
+//    qDebug()<<"b_max_selected = "<<b_max_selected;
 
 
-    DrawShadowline(d_marker_max,d_marker_min);
-    emit valueChanged(d_marker_max, d_marker_min);
+
+
+
+    DrawShadowline(i_marker_max,i_marker_min);
+    emit valueChanged(i_marker_max, i_marker_min);
 
 }
 
 void MyQwtPlot::DrawShadowline(double max, double min)
 {
+
+
+
     qwt_marker_max->setLineStyle(QwtPlotMarker::VLine);
     qwt_marker_max->setLinePen( Qt::red, 0, Qt::DashDotLine );
     qwt_marker_max->setXValue(max);
@@ -119,10 +124,10 @@ void MyQwtPlot::DrawShadowline(double max, double min)
 }
 double MyQwtPlot::getMax()
 {
-    return d_marker_max;
+    return i_marker_max;
 //    return 20.2;
 }
 double MyQwtPlot::getMin()
 {
-    return d_marker_min;
+    return i_marker_min;
 }

@@ -44,6 +44,8 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+
+
 void MainWindow::on_pushButton_read_file_clicked()
 {
     //1.Read File.
@@ -102,6 +104,7 @@ void MainWindow::on_radioButton_min_clicked()
 
 void MainWindow::on_pushButton_generate_clicked()
 {
+
     qDebug()<<"Max = "<<myPlot_left_hip->getMax();
     qDebug()<<"Min = "<<myPlot_left_hip->getMin();
 }
