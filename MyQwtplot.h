@@ -24,8 +24,8 @@ public:
     ~MyQwtPlot();
     void setSamples(int time_tick, const double* data, const int size);
     void setMaxline(bool select);
-    double getMax();
-    double getMin();
+    int getMax();
+    int getMin();
 
 public slots:
     void selectedFun(const QPointF& pos);

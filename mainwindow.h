@@ -42,8 +42,11 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+
     std::vector<double> v_left_hip, v_right_hip, v_left_knee, v_right_knee;
     MyQwtPlot *myPlot_left_hip, *myPlot_right_hip, *myPlot_left_knee, *myPlot_right_knee;
+    QString fileName;
+    int out_filename_num = 0;
 };
 
 #endif // MAINWINDOW_H

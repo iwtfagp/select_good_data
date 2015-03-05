@@ -49,12 +49,17 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButton_read_file_clicked()
 {
     //1.Read File.
-    QString fileName = QFileDialog::getOpenFileName(this,
-                                                    tr("Open Image"), "_TEST", tr("(*.txt)"));
+    QString old_fileName = fileName;
+    fileName = QFileDialog::getOpenFileName(this,
+                                            tr("Open Image"), "_TEST", tr("(*.txt)"));
+    if(fileName.isEmpty())
+        fileName = old_fileName;
+
     QFile file(fileName);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
         return;
 
+    out_filename_num = 0;
 
     //2.Clear vector and prevent errors.
     v_left_hip.clear();
@@ -63,7 +68,7 @@ void MainWindow::on_pushButton_read_file_clicked()
     v_right_knee.clear();
 
 
-    //4.Get file data.
+    //3.Get file data.
     while (!file.atEnd()) {
         QString line = file.readLine();
         process_line(line);
@@ -72,7 +77,7 @@ void MainWindow::on_pushButton_read_file_clicked()
     myPlot_left_hip  ->setSamples(1, v_left_hip.data(), (int)v_left_hip.size());
     myPlot_right_hip ->setSamples(1, v_right_hip.data(), (int)v_right_hip.size());
     myPlot_left_knee ->setSamples(1, v_left_knee.data(), (int)v_left_knee.size());
-    myPlot_right_knee->setSamples(1, v_right_hip.data(), (int)v_right_hip.size());
+    myPlot_right_knee->setSamples(1, v_right_knee.data(), (int)v_right_knee.size());
 
 }
 void MainWindow::process_line(QString line)
@@ -105,6 +110,48 @@ void MainWindow::on_radioButton_min_clicked()
 void MainWindow::on_pushButton_generate_clicked()
 {
 
-    qDebug()<<"Max = "<<myPlot_left_hip->getMax();
-    qDebug()<<"Min = "<<myPlot_left_hip->getMin();
+//        qDebug()<<"Max = "<<myPlot_left_hip->getMax();
+//        qDebug()<<"Min = "<<myPlot_left_hip->getMin();
+    QString qs_user, qs_date, qs_time;
+    if(fileName.isEmpty())
+        return;
+    QStringList list = fileName.split('/');
+    list = list.at(list.size()-1).split('.');
+    list = list.at(0).split('_');
+    if(!list.isEmpty())
+    {
+        qs_user = list.at(0);
+        qs_date = list.at(1);
+        qs_time = list.at(2);
+    }
+    else
+    {
+        qs_user = "NoUser";
+        qs_date = "NoDate";
+        qs_time = "NoTime";
+    }
+    out_filename_num++;
+    QString output_filename = "after/" + qs_user + "_" + qs_date + "_" + qs_time +
+            "_" + QString::number(out_filename_num) + ".txt";
+
+    QFile *out_file = new QFile(output_filename);
+
+    if (!out_file->open(QIODevice::WriteOnly | QIODevice::Text))
+        return;
+
+    QTextStream out(out_file);
+
+    for(int i = myPlot_left_hip->getMin(); i < myPlot_left_hip->getMax(); i++)
+    {
+        out<<QString::number(v_left_hip.at(i))<<","<<QString::number(v_right_hip.at(i))<<","<<
+            QString::number(v_left_knee.at(i))<<","<<QString::number(v_right_knee.at(i))<<endl;
+
+
+
+    }
+
+
+    out_file->close();
+
+
 }
