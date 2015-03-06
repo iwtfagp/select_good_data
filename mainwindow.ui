@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>925</width>
-    <height>543</height>
+    <height>781</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -21,8 +21,8 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="1" column="1">
-     <widget class="QwtPlot" name="qwtPlot_right_knee">
+    <item row="0" column="0">
+     <widget class="QwtPlot" name="qwtPlot_left_hip">
       <property name="minimumSize">
        <size>
         <width>400</width>
@@ -35,21 +35,17 @@
         <height>250</height>
        </size>
       </property>
-     </widget>
-    </item>
-    <item row="1" column="0">
-     <widget class="QwtPlot" name="qwtPlot_left_knee">
-      <property name="minimumSize">
-       <size>
-        <width>400</width>
-        <height>200</height>
-       </size>
+      <property name="mouseTracking">
+       <bool>false</bool>
       </property>
-      <property name="maximumSize">
-       <size>
-        <width>300</width>
-        <height>250</height>
-       </size>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Plain</enum>
+      </property>
+      <property name="autoReplot">
+       <bool>false</bool>
       </property>
      </widget>
     </item>
@@ -69,23 +65,7 @@
       </property>
      </widget>
     </item>
-    <item row="0" column="0">
-     <widget class="QwtPlot" name="qwtPlot_left_hip">
-      <property name="minimumSize">
-       <size>
-        <width>400</width>
-        <height>200</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>300</width>
-        <height>250</height>
-       </size>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="2" rowspan="2">
+    <item row="0" column="2">
      <widget class="QGroupBox" name="groupBox">
       <property name="title">
        <string>GroupBox</string>
@@ -142,6 +122,48 @@
         </widget>
        </item>
       </layout>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QwtPlot" name="qwtPlot_left_knee">
+      <property name="minimumSize">
+       <size>
+        <width>400</width>
+        <height>200</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>300</width>
+        <height>250</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QwtPlot" name="qwtPlot_right_knee">
+      <property name="minimumSize">
+       <size>
+        <width>400</width>
+        <height>200</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>300</width>
+        <height>250</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0" colspan="2">
+     <widget class="QwtPlot" name="qwtPlot_left">
+      <property name="minimumSize">
+       <size>
+        <width>400</width>
+        <height>200</height>
+       </size>
+      </property>
      </widget>
     </item>
    </layout>

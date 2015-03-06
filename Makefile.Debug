@@ -292,6 +292,11 @@ debug\moc_mainwindow.cpp: C:\Qt\5.4\msvc2013\include\QtWidgets\QMainWindow \
 		D:\LIB\Qwt-6.1.2\include\qwt_abstract_legend.h \
 		D:\LIB\Qwt-6.1.2\include\qwt_plot_renderer.h \
 		MyQwtplot.h \
+		D:\LIB\Qwt-6.1.2\include\qwt_plot_rescaler.h \
+		D:\LIB\Qwt-6.1.2\include\qwt_plot.h \
+		D:\LIB\Qwt-6.1.2\include\qwt_plot_dict.h \
+		D:\LIB\Qwt-6.1.2\include\qwt_scale_map.h \
+		D:\LIB\Qwt-6.1.2\include\qwt_transform.h \
 		C:\Qt\5.4\msvc2013\include\QtCore\QObject \
 		C:\Qt\5.4\msvc2013\include\QtCore\QString \
 		mainwindow.h
@@ -432,6 +437,11 @@ debug\moc_myqwtplot.cpp: D:\LIB\Qwt-6.1.2\include\qwt_plot_curve.h \
 		D:\LIB\Qwt-6.1.2\include\qwt_legend.h \
 		D:\LIB\Qwt-6.1.2\include\qwt_abstract_legend.h \
 		D:\LIB\Qwt-6.1.2\include\qwt_plot_renderer.h \
+		D:\LIB\Qwt-6.1.2\include\qwt_plot_rescaler.h \
+		D:\LIB\Qwt-6.1.2\include\qwt_plot.h \
+		D:\LIB\Qwt-6.1.2\include\qwt_plot_dict.h \
+		D:\LIB\Qwt-6.1.2\include\qwt_scale_map.h \
+		D:\LIB\Qwt-6.1.2\include\qwt_transform.h \
 		C:\Qt\5.4\msvc2013\include\QtCore\QObject \
 		C:\Qt\5.4\msvc2013\include\QtCore\QString \
 		myqwtplot.h
@@ -721,6 +731,11 @@ debug\main.obj: main.cpp mainwindow.h \
 		D:\LIB\Qwt-6.1.2\include\qwt_abstract_legend.h \
 		D:\LIB\Qwt-6.1.2\include\qwt_plot_renderer.h \
 		MyQwtplot.h \
+		D:\LIB\Qwt-6.1.2\include\qwt_plot_rescaler.h \
+		D:\LIB\Qwt-6.1.2\include\qwt_plot.h \
+		D:\LIB\Qwt-6.1.2\include\qwt_plot_dict.h \
+		D:\LIB\Qwt-6.1.2\include\qwt_scale_map.h \
+		D:\LIB\Qwt-6.1.2\include\qwt_transform.h \
 		C:\Qt\5.4\msvc2013\include\QtCore\QObject \
 		C:\Qt\5.4\msvc2013\include\QtCore\QString \
 		C:\Qt\5.4\msvc2013\include\QtWidgets\QApplication \
@@ -878,6 +893,11 @@ debug\mainwindow.obj: mainwindow.cpp mainwindow.h \
 		D:\LIB\Qwt-6.1.2\include\qwt_abstract_legend.h \
 		D:\LIB\Qwt-6.1.2\include\qwt_plot_renderer.h \
 		MyQwtplot.h \
+		D:\LIB\Qwt-6.1.2\include\qwt_plot_rescaler.h \
+		D:\LIB\Qwt-6.1.2\include\qwt_plot.h \
+		D:\LIB\Qwt-6.1.2\include\qwt_plot_dict.h \
+		D:\LIB\Qwt-6.1.2\include\qwt_scale_map.h \
+		D:\LIB\Qwt-6.1.2\include\qwt_transform.h \
 		C:\Qt\5.4\msvc2013\include\QtCore\QObject \
 		C:\Qt\5.4\msvc2013\include\QtCore\QString \
 		ui_mainwindow.h \
@@ -930,11 +950,7 @@ debug\mainwindow.obj: mainwindow.cpp mainwindow.h \
 		C:\Qt\5.4\msvc2013\include\QtWidgets\qstatusbar.h \
 		C:\Qt\5.4\msvc2013\include\QtWidgets\QToolBar \
 		C:\Qt\5.4\msvc2013\include\QtWidgets\qtoolbar.h \
-		C:\Qt\5.4\msvc2013\include\QtWidgets\QWidget \
-		D:\LIB\Qwt-6.1.2\include\qwt_plot.h \
-		D:\LIB\Qwt-6.1.2\include\qwt_plot_dict.h \
-		D:\LIB\Qwt-6.1.2\include\qwt_scale_map.h \
-		D:\LIB\Qwt-6.1.2\include\qwt_transform.h
+		C:\Qt\5.4\msvc2013\include\QtWidgets\QWidget
 
 debug\myqwtplot.obj: myqwtplot.cpp myqwtplot.h \
 		D:\LIB\Qwt-6.1.2\include\qwt_plot_curve.h \
@@ -1072,12 +1088,13 @@ debug\myqwtplot.obj: myqwtplot.cpp myqwtplot.h \
 		D:\LIB\Qwt-6.1.2\include\qwt_legend.h \
 		D:\LIB\Qwt-6.1.2\include\qwt_abstract_legend.h \
 		D:\LIB\Qwt-6.1.2\include\qwt_plot_renderer.h \
-		C:\Qt\5.4\msvc2013\include\QtCore\QObject \
-		C:\Qt\5.4\msvc2013\include\QtCore\QString \
+		D:\LIB\Qwt-6.1.2\include\qwt_plot_rescaler.h \
 		D:\LIB\Qwt-6.1.2\include\qwt_plot.h \
 		D:\LIB\Qwt-6.1.2\include\qwt_plot_dict.h \
 		D:\LIB\Qwt-6.1.2\include\qwt_scale_map.h \
-		D:\LIB\Qwt-6.1.2\include\qwt_transform.h
+		D:\LIB\Qwt-6.1.2\include\qwt_transform.h \
+		C:\Qt\5.4\msvc2013\include\QtCore\QObject \
+		C:\Qt\5.4\msvc2013\include\QtCore\QString
 
 debug\moc_mainwindow.obj: debug\moc_mainwindow.cpp 
 

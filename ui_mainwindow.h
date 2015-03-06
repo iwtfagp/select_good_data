@@ -33,10 +33,8 @@ class Ui_MainWindow
 public:
     QWidget *centralWidget;
     QGridLayout *gridLayout;
-    QwtPlot *qwtPlot_right_knee;
-    QwtPlot *qwtPlot_left_knee;
-    QwtPlot *qwtPlot_right_hip;
     QwtPlot *qwtPlot_left_hip;
+    QwtPlot *qwtPlot_right_hip;
     QGroupBox *groupBox;
     QGridLayout *gridLayout_2;
     QRadioButton *radioButton_max;
@@ -44,6 +42,9 @@ public:
     QPushButton *pushButton_read_file;
     QSpacerItem *verticalSpacer;
     QPushButton *pushButton_generate;
+    QwtPlot *qwtPlot_left_knee;
+    QwtPlot *qwtPlot_right_knee;
+    QwtPlot *qwtPlot_left;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -52,7 +53,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(925, 543);
+        MainWindow->resize(925, 781);
         MainWindow->setMinimumSize(QSize(500, 250));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
@@ -60,19 +61,16 @@ public:
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        qwtPlot_right_knee = new QwtPlot(centralWidget);
-        qwtPlot_right_knee->setObjectName(QStringLiteral("qwtPlot_right_knee"));
-        qwtPlot_right_knee->setMinimumSize(QSize(400, 200));
-        qwtPlot_right_knee->setMaximumSize(QSize(300, 250));
+        qwtPlot_left_hip = new QwtPlot(centralWidget);
+        qwtPlot_left_hip->setObjectName(QStringLiteral("qwtPlot_left_hip"));
+        qwtPlot_left_hip->setMinimumSize(QSize(400, 200));
+        qwtPlot_left_hip->setMaximumSize(QSize(300, 250));
+        qwtPlot_left_hip->setMouseTracking(false);
+        qwtPlot_left_hip->setAutoFillBackground(false);
+        qwtPlot_left_hip->setFrameShadow(QFrame::Plain);
+        qwtPlot_left_hip->setAutoReplot(false);
 
-        gridLayout->addWidget(qwtPlot_right_knee, 1, 1, 1, 1);
-
-        qwtPlot_left_knee = new QwtPlot(centralWidget);
-        qwtPlot_left_knee->setObjectName(QStringLiteral("qwtPlot_left_knee"));
-        qwtPlot_left_knee->setMinimumSize(QSize(400, 200));
-        qwtPlot_left_knee->setMaximumSize(QSize(300, 250));
-
-        gridLayout->addWidget(qwtPlot_left_knee, 1, 0, 1, 1);
+        gridLayout->addWidget(qwtPlot_left_hip, 0, 0, 1, 1);
 
         qwtPlot_right_hip = new QwtPlot(centralWidget);
         qwtPlot_right_hip->setObjectName(QStringLiteral("qwtPlot_right_hip"));
@@ -80,13 +78,6 @@ public:
         qwtPlot_right_hip->setMaximumSize(QSize(300, 250));
 
         gridLayout->addWidget(qwtPlot_right_hip, 0, 1, 1, 1);
-
-        qwtPlot_left_hip = new QwtPlot(centralWidget);
-        qwtPlot_left_hip->setObjectName(QStringLiteral("qwtPlot_left_hip"));
-        qwtPlot_left_hip->setMinimumSize(QSize(400, 200));
-        qwtPlot_left_hip->setMaximumSize(QSize(300, 250));
-
-        gridLayout->addWidget(qwtPlot_left_hip, 0, 0, 1, 1);
 
         groupBox = new QGroupBox(centralWidget);
         groupBox->setObjectName(QStringLiteral("groupBox"));
@@ -122,7 +113,27 @@ public:
         gridLayout_2->addWidget(pushButton_generate, 1, 0, 1, 1);
 
 
-        gridLayout->addWidget(groupBox, 0, 2, 2, 1);
+        gridLayout->addWidget(groupBox, 0, 2, 1, 1);
+
+        qwtPlot_left_knee = new QwtPlot(centralWidget);
+        qwtPlot_left_knee->setObjectName(QStringLiteral("qwtPlot_left_knee"));
+        qwtPlot_left_knee->setMinimumSize(QSize(400, 200));
+        qwtPlot_left_knee->setMaximumSize(QSize(300, 250));
+
+        gridLayout->addWidget(qwtPlot_left_knee, 1, 0, 1, 1);
+
+        qwtPlot_right_knee = new QwtPlot(centralWidget);
+        qwtPlot_right_knee->setObjectName(QStringLiteral("qwtPlot_right_knee"));
+        qwtPlot_right_knee->setMinimumSize(QSize(400, 200));
+        qwtPlot_right_knee->setMaximumSize(QSize(300, 250));
+
+        gridLayout->addWidget(qwtPlot_right_knee, 1, 1, 1, 1);
+
+        qwtPlot_left = new QwtPlot(centralWidget);
+        qwtPlot_left->setObjectName(QStringLiteral("qwtPlot_left"));
+        qwtPlot_left->setMinimumSize(QSize(400, 200));
+
+        gridLayout->addWidget(qwtPlot_left, 2, 0, 1, 2);
 
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);

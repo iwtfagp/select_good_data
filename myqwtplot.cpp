@@ -11,8 +11,7 @@ MyQwtPlot::MyQwtPlot(const QString &title, QwtPlot *qwtplot)
 
 
     b_max_selected = false;
-    i_marker_max = 0;
-    i_marker_min = 0;
+
 
     qwt_curve = new QwtPlotCurve();
 
@@ -50,7 +49,26 @@ void MyQwtPlot::setSamples(int time_tick, const double *data, const int size)
 
     qwt_curve->setSamples(time.data(), data, size);
     qwt_curve->attach(qwt_myQwtplot);
+    qwt_myQwtplot->setAxisScale(QwtPlot::yLeft,-100,100);
+
+//    for ( int axis = 0; axis < QwtPlot::axisCnt; axis++ )
+//            qwt_myQwtplot->setAxisAutoScale(axis);
+
+//        qwt_myQwtplot->updateAxes();
+
     qwt_myQwtplot->replot();
+
+
+
+
+    background_rect_lower_bound = qwt_myQwtplot->axisScaleDiv(QwtPlot::yLeft).lowerBound();
+    background_rect_upper_bound = qwt_myQwtplot->axisScaleDiv(QwtPlot::yLeft).upperBound();
+//    qDebug()<<"background_rect_lower_bound = "<<background_rect_lower_bound;
+//    qDebug()<<"background_rect_upper_bound = "<<background_rect_upper_bound;
+    i_marker_max = 0;
+    i_marker_min = 0;
+    DrawShadowline(i_marker_max,i_marker_min);
+    emit valueChanged(i_marker_max, i_marker_min);
 }
 
 void MyQwtPlot::setMaxline(bool select)
@@ -106,8 +124,9 @@ void MyQwtPlot::DrawShadowline(double max, double min)
     QRectF rect;
     rect.setLeft(min);
     rect.setRight(max);
-    rect.setTop(qwt_myQwtplot->axisScaleDiv(QwtPlot::yLeft).lowerBound());
-    rect.setBottom(qwt_myQwtplot->axisScaleDiv(QwtPlot::yLeft).upperBound());
+    rect.setTop(background_rect_upper_bound);
+    rect.setBottom(background_rect_lower_bound);
+
 
     QPainterPath path;
 

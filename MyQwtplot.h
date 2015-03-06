@@ -10,7 +10,7 @@
 #include <qwt_plot_canvas.h>
 #include <qwt_legend.h>
 #include <qwt_plot_renderer.h>
-
+#include "qwt_plot_rescaler.h"
 
 #include <QObject>
 #include <QString>
@@ -41,6 +41,7 @@ private:
     QwtPlotMarker *qwt_marker_max, *qwt_marker_min;
     QwtPlotCurve *qwt_curve;
     QwtPlotShapeItem *qwt_item;
+    int background_rect_upper_bound, background_rect_lower_bound;
 
 
 
