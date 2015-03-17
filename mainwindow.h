@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QFileDialog>
+#include <QDir>
 
 #include <QDebug>
 
@@ -18,6 +19,9 @@
 
 #include "MyQwtplot.h"
 
+#include <QFileSystemModel>
+#include <QTreeView>
+
 namespace Ui {
 class MainWindow;
 }
@@ -31,20 +35,27 @@ public:
     ~MainWindow();
     void normalization(std::vector<double> *data, const int total_size = 10000);
 
+
 private slots:
-    void on_pushButton_read_file_clicked();
+
     void on_radioButton_max_clicked();
     void on_radioButton_min_clicked();
     void on_pushButton_generate_clicked();
+
+    void on_pushButton_open_dir_clicked();
+
+    void on_treeView_clicked(const QModelIndex &index);
 
 private:
     Ui::MainWindow *ui;
     std::vector<double> v_left_hip, v_right_hip, v_left_knee, v_right_knee;
     MyQwtPlot *myPlot_left_hip, *myPlot_right_hip, *myPlot_left_knee, *myPlot_right_knee;
-    QString fileName;
+    QString fileName, file_dir;
     int out_filename_num = 0;
     MyQwtPlot *test;
     void process_line(QString line);
+    QFileSystemModel model;
+    QTreeView tree;
 
 };
 

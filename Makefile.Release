@@ -255,6 +255,7 @@ release\moc_mainwindow.cpp: C:\Qt\5.4\msvc2013\include\QtWidgets\QMainWindow \
 		C:\Qt\5.4\msvc2013\include\QtCore\qdir.h \
 		C:\Qt\5.4\msvc2013\include\QtCore\qfileinfo.h \
 		C:\Qt\5.4\msvc2013\include\QtWidgets\qdialog.h \
+		C:\Qt\5.4\msvc2013\include\QtCore\QDir \
 		C:\Qt\5.4\msvc2013\include\QtCore\QDebug \
 		D:\LIB\Qwt-6.1.2\include\qwt_plot_curve.h \
 		D:\LIB\Qwt-6.1.2\include\qwt_global.h \
@@ -298,6 +299,25 @@ release\moc_mainwindow.cpp: C:\Qt\5.4\msvc2013\include\QtWidgets\QMainWindow \
 		D:\LIB\Qwt-6.1.2\include\qwt_transform.h \
 		C:\Qt\5.4\msvc2013\include\QtCore\QObject \
 		C:\Qt\5.4\msvc2013\include\QtCore\QString \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\QFileSystemModel \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\qfilesystemmodel.h \
+		C:\Qt\5.4\msvc2013\include\QtCore\qabstractitemmodel.h \
+		C:\Qt\5.4\msvc2013\include\QtCore\qdiriterator.h \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\QTreeView \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\qtreeview.h \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\qabstractitemview.h \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\qabstractscrollarea.h \
+		C:\Qt\5.4\msvc2013\include\QtCore\qitemselectionmodel.h \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\qabstractitemdelegate.h \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\qstyleoption.h \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\qabstractspinbox.h \
+		C:\Qt\5.4\msvc2013\include\QtGui\qvalidator.h \
+		C:\Qt\5.4\msvc2013\include\QtCore\qregularexpression.h \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\qslider.h \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\qabstractslider.h \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\qstyle.h \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\qtabbar.h \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\qrubberband.h \
 		mainwindow.h
 	C:\Qt\5.4\msvc2013\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -IC:/Qt/5.4/msvc2013/mkspecs/win32-msvc2013 -IC:/Users/William/Dropbox/Code_Exoskeleton/get_raw_model/select_data -ID:/LIB/Qwt-6.1.2/include -IC:/Qt/5.4/msvc2013/include -IC:/Qt/5.4/msvc2013/include/QtWidgets -IC:/Qt/5.4/msvc2013/include/QtGui -IC:/Qt/5.4/msvc2013/include/QtANGLE -IC:/Qt/5.4/msvc2013/include/QtCore mainwindow.h -o release\moc_mainwindow.cpp
 
@@ -694,6 +714,7 @@ release\main.obj: main.cpp mainwindow.h \
 		C:\Qt\5.4\msvc2013\include\QtCore\qdir.h \
 		C:\Qt\5.4\msvc2013\include\QtCore\qfileinfo.h \
 		C:\Qt\5.4\msvc2013\include\QtWidgets\qdialog.h \
+		C:\Qt\5.4\msvc2013\include\QtCore\QDir \
 		C:\Qt\5.4\msvc2013\include\QtCore\QDebug \
 		D:\LIB\Qwt-6.1.2\include\qwt_plot_curve.h \
 		D:\LIB\Qwt-6.1.2\include\qwt_global.h \
@@ -737,6 +758,25 @@ release\main.obj: main.cpp mainwindow.h \
 		D:\LIB\Qwt-6.1.2\include\qwt_transform.h \
 		C:\Qt\5.4\msvc2013\include\QtCore\QObject \
 		C:\Qt\5.4\msvc2013\include\QtCore\QString \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\QFileSystemModel \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\qfilesystemmodel.h \
+		C:\Qt\5.4\msvc2013\include\QtCore\qabstractitemmodel.h \
+		C:\Qt\5.4\msvc2013\include\QtCore\qdiriterator.h \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\QTreeView \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\qtreeview.h \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\qabstractitemview.h \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\qabstractscrollarea.h \
+		C:\Qt\5.4\msvc2013\include\QtCore\qitemselectionmodel.h \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\qabstractitemdelegate.h \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\qstyleoption.h \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\qabstractspinbox.h \
+		C:\Qt\5.4\msvc2013\include\QtGui\qvalidator.h \
+		C:\Qt\5.4\msvc2013\include\QtCore\qregularexpression.h \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\qslider.h \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\qabstractslider.h \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\qstyle.h \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\qtabbar.h \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\qrubberband.h \
 		C:\Qt\5.4\msvc2013\include\QtWidgets\QApplication \
 		C:\Qt\5.4\msvc2013\include\QtWidgets\qapplication.h \
 		C:\Qt\5.4\msvc2013\include\QtCore\qcoreapplication.h \
@@ -856,6 +896,7 @@ release\mainwindow.obj: mainwindow.cpp mainwindow.h \
 		C:\Qt\5.4\msvc2013\include\QtCore\qdir.h \
 		C:\Qt\5.4\msvc2013\include\QtCore\qfileinfo.h \
 		C:\Qt\5.4\msvc2013\include\QtWidgets\qdialog.h \
+		C:\Qt\5.4\msvc2013\include\QtCore\QDir \
 		C:\Qt\5.4\msvc2013\include\QtCore\QDebug \
 		D:\LIB\Qwt-6.1.2\include\qwt_plot_curve.h \
 		D:\LIB\Qwt-6.1.2\include\qwt_global.h \
@@ -899,6 +940,25 @@ release\mainwindow.obj: mainwindow.cpp mainwindow.h \
 		D:\LIB\Qwt-6.1.2\include\qwt_transform.h \
 		C:\Qt\5.4\msvc2013\include\QtCore\QObject \
 		C:\Qt\5.4\msvc2013\include\QtCore\QString \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\QFileSystemModel \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\qfilesystemmodel.h \
+		C:\Qt\5.4\msvc2013\include\QtCore\qabstractitemmodel.h \
+		C:\Qt\5.4\msvc2013\include\QtCore\qdiriterator.h \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\QTreeView \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\qtreeview.h \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\qabstractitemview.h \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\qabstractscrollarea.h \
+		C:\Qt\5.4\msvc2013\include\QtCore\qitemselectionmodel.h \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\qabstractitemdelegate.h \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\qstyleoption.h \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\qabstractspinbox.h \
+		C:\Qt\5.4\msvc2013\include\QtGui\qvalidator.h \
+		C:\Qt\5.4\msvc2013\include\QtCore\qregularexpression.h \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\qslider.h \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\qabstractslider.h \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\qstyle.h \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\qtabbar.h \
+		C:\Qt\5.4\msvc2013\include\QtWidgets\qrubberband.h \
 		ui_mainwindow.h \
 		C:\Qt\5.4\msvc2013\include\QtCore\QVariant \
 		C:\Qt\5.4\msvc2013\include\QtWidgets\QAction \
@@ -922,20 +982,6 @@ release\mainwindow.obj: mainwindow.cpp mainwindow.h \
 		C:\Qt\5.4\msvc2013\include\QtWidgets\qgroupbox.h \
 		C:\Qt\5.4\msvc2013\include\QtWidgets\QHeaderView \
 		C:\Qt\5.4\msvc2013\include\QtWidgets\qheaderview.h \
-		C:\Qt\5.4\msvc2013\include\QtWidgets\qabstractitemview.h \
-		C:\Qt\5.4\msvc2013\include\QtWidgets\qabstractscrollarea.h \
-		C:\Qt\5.4\msvc2013\include\QtCore\qabstractitemmodel.h \
-		C:\Qt\5.4\msvc2013\include\QtCore\qitemselectionmodel.h \
-		C:\Qt\5.4\msvc2013\include\QtWidgets\qabstractitemdelegate.h \
-		C:\Qt\5.4\msvc2013\include\QtWidgets\qstyleoption.h \
-		C:\Qt\5.4\msvc2013\include\QtWidgets\qabstractspinbox.h \
-		C:\Qt\5.4\msvc2013\include\QtGui\qvalidator.h \
-		C:\Qt\5.4\msvc2013\include\QtCore\qregularexpression.h \
-		C:\Qt\5.4\msvc2013\include\QtWidgets\qslider.h \
-		C:\Qt\5.4\msvc2013\include\QtWidgets\qabstractslider.h \
-		C:\Qt\5.4\msvc2013\include\QtWidgets\qstyle.h \
-		C:\Qt\5.4\msvc2013\include\QtWidgets\qtabbar.h \
-		C:\Qt\5.4\msvc2013\include\QtWidgets\qrubberband.h \
 		C:\Qt\5.4\msvc2013\include\QtWidgets\QMenuBar \
 		C:\Qt\5.4\msvc2013\include\QtWidgets\qmenubar.h \
 		C:\Qt\5.4\msvc2013\include\QtWidgets\qmenu.h \
@@ -944,7 +990,6 @@ release\mainwindow.obj: mainwindow.cpp mainwindow.h \
 		C:\Qt\5.4\msvc2013\include\QtWidgets\qabstractbutton.h \
 		C:\Qt\5.4\msvc2013\include\QtWidgets\QRadioButton \
 		C:\Qt\5.4\msvc2013\include\QtWidgets\qradiobutton.h \
-		C:\Qt\5.4\msvc2013\include\QtWidgets\QSpacerItem \
 		C:\Qt\5.4\msvc2013\include\QtWidgets\QStatusBar \
 		C:\Qt\5.4\msvc2013\include\QtWidgets\qstatusbar.h \
 		C:\Qt\5.4\msvc2013\include\QtWidgets\QToolBar \

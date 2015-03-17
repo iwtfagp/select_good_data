@@ -20,9 +20,9 @@
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
-#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
+#include <QtWidgets/QTreeView>
 #include <QtWidgets/QWidget>
 #include "qwt_plot.h"
 
@@ -35,16 +35,16 @@ public:
     QGridLayout *gridLayout;
     QwtPlot *qwtPlot_left_hip;
     QwtPlot *qwtPlot_right_hip;
-    QGroupBox *groupBox;
-    QGridLayout *gridLayout_2;
-    QRadioButton *radioButton_max;
-    QRadioButton *radioButton_min;
-    QPushButton *pushButton_read_file;
-    QSpacerItem *verticalSpacer;
-    QPushButton *pushButton_generate;
     QwtPlot *qwtPlot_left_knee;
     QwtPlot *qwtPlot_right_knee;
-    QwtPlot *qwtPlot_left;
+    QwtPlot *qwtPlot_All;
+    QGroupBox *groupBox;
+    QGridLayout *gridLayout_2;
+    QPushButton *pushButton_open_dir;
+    QTreeView *treeView;
+    QRadioButton *radioButton_max;
+    QRadioButton *radioButton_min;
+    QPushButton *pushButton_generate;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -53,7 +53,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(925, 781);
+        MainWindow->resize(1006, 723);
         MainWindow->setMinimumSize(QSize(500, 250));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
@@ -63,8 +63,8 @@ public:
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         qwtPlot_left_hip = new QwtPlot(centralWidget);
         qwtPlot_left_hip->setObjectName(QStringLiteral("qwtPlot_left_hip"));
-        qwtPlot_left_hip->setMinimumSize(QSize(400, 200));
-        qwtPlot_left_hip->setMaximumSize(QSize(300, 250));
+        qwtPlot_left_hip->setMinimumSize(QSize(350, 150));
+        qwtPlot_left_hip->setMaximumSize(QSize(300, 200));
         qwtPlot_left_hip->setMouseTracking(false);
         qwtPlot_left_hip->setAutoFillBackground(false);
         qwtPlot_left_hip->setFrameShadow(QFrame::Plain);
@@ -74,10 +74,30 @@ public:
 
         qwtPlot_right_hip = new QwtPlot(centralWidget);
         qwtPlot_right_hip->setObjectName(QStringLiteral("qwtPlot_right_hip"));
-        qwtPlot_right_hip->setMinimumSize(QSize(400, 200));
-        qwtPlot_right_hip->setMaximumSize(QSize(300, 250));
+        qwtPlot_right_hip->setMinimumSize(QSize(350, 150));
+        qwtPlot_right_hip->setMaximumSize(QSize(300, 200));
 
         gridLayout->addWidget(qwtPlot_right_hip, 0, 1, 1, 1);
+
+        qwtPlot_left_knee = new QwtPlot(centralWidget);
+        qwtPlot_left_knee->setObjectName(QStringLiteral("qwtPlot_left_knee"));
+        qwtPlot_left_knee->setMinimumSize(QSize(350, 150));
+        qwtPlot_left_knee->setMaximumSize(QSize(300, 200));
+
+        gridLayout->addWidget(qwtPlot_left_knee, 2, 0, 1, 1);
+
+        qwtPlot_right_knee = new QwtPlot(centralWidget);
+        qwtPlot_right_knee->setObjectName(QStringLiteral("qwtPlot_right_knee"));
+        qwtPlot_right_knee->setMinimumSize(QSize(350, 150));
+        qwtPlot_right_knee->setMaximumSize(QSize(300, 200));
+
+        gridLayout->addWidget(qwtPlot_right_knee, 2, 1, 1, 1);
+
+        qwtPlot_All = new QwtPlot(centralWidget);
+        qwtPlot_All->setObjectName(QStringLiteral("qwtPlot_All"));
+        qwtPlot_All->setMinimumSize(QSize(400, 100));
+
+        gridLayout->addWidget(qwtPlot_All, 3, 0, 1, 2);
 
         groupBox = new QGroupBox(centralWidget);
         groupBox->setObjectName(QStringLiteral("groupBox"));
@@ -85,60 +105,41 @@ public:
         gridLayout_2->setSpacing(6);
         gridLayout_2->setContentsMargins(11, 11, 11, 11);
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
+        pushButton_open_dir = new QPushButton(groupBox);
+        pushButton_open_dir->setObjectName(QStringLiteral("pushButton_open_dir"));
+
+        gridLayout_2->addWidget(pushButton_open_dir, 0, 0, 1, 1);
+
+        treeView = new QTreeView(groupBox);
+        treeView->setObjectName(QStringLiteral("treeView"));
+
+        gridLayout_2->addWidget(treeView, 1, 0, 1, 1);
+
         radioButton_max = new QRadioButton(groupBox);
         radioButton_max->setObjectName(QStringLiteral("radioButton_max"));
         radioButton_max->setCheckable(true);
         radioButton_max->setChecked(false);
 
-        gridLayout_2->addWidget(radioButton_max, 2, 0, 1, 1);
+        gridLayout_2->addWidget(radioButton_max, 3, 0, 1, 1);
 
         radioButton_min = new QRadioButton(groupBox);
         radioButton_min->setObjectName(QStringLiteral("radioButton_min"));
         radioButton_min->setChecked(true);
 
-        gridLayout_2->addWidget(radioButton_min, 3, 0, 1, 1);
-
-        pushButton_read_file = new QPushButton(groupBox);
-        pushButton_read_file->setObjectName(QStringLiteral("pushButton_read_file"));
-
-        gridLayout_2->addWidget(pushButton_read_file, 0, 0, 1, 1);
-
-        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        gridLayout_2->addItem(verticalSpacer, 4, 0, 1, 1);
+        gridLayout_2->addWidget(radioButton_min, 4, 0, 1, 1);
 
         pushButton_generate = new QPushButton(groupBox);
         pushButton_generate->setObjectName(QStringLiteral("pushButton_generate"));
 
-        gridLayout_2->addWidget(pushButton_generate, 1, 0, 1, 1);
+        gridLayout_2->addWidget(pushButton_generate, 2, 0, 1, 1);
 
 
-        gridLayout->addWidget(groupBox, 0, 2, 1, 1);
-
-        qwtPlot_left_knee = new QwtPlot(centralWidget);
-        qwtPlot_left_knee->setObjectName(QStringLiteral("qwtPlot_left_knee"));
-        qwtPlot_left_knee->setMinimumSize(QSize(400, 200));
-        qwtPlot_left_knee->setMaximumSize(QSize(300, 250));
-
-        gridLayout->addWidget(qwtPlot_left_knee, 1, 0, 1, 1);
-
-        qwtPlot_right_knee = new QwtPlot(centralWidget);
-        qwtPlot_right_knee->setObjectName(QStringLiteral("qwtPlot_right_knee"));
-        qwtPlot_right_knee->setMinimumSize(QSize(400, 200));
-        qwtPlot_right_knee->setMaximumSize(QSize(300, 250));
-
-        gridLayout->addWidget(qwtPlot_right_knee, 1, 1, 1, 1);
-
-        qwtPlot_left = new QwtPlot(centralWidget);
-        qwtPlot_left->setObjectName(QStringLiteral("qwtPlot_left"));
-        qwtPlot_left->setMinimumSize(QSize(400, 200));
-
-        gridLayout->addWidget(qwtPlot_left, 2, 0, 1, 2);
+        gridLayout->addWidget(groupBox, 0, 2, 4, 1);
 
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 925, 22));
+        menuBar->setGeometry(QRect(0, 0, 1006, 22));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -156,9 +157,9 @@ public:
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
         groupBox->setTitle(QApplication::translate("MainWindow", "GroupBox", 0));
+        pushButton_open_dir->setText(QApplication::translate("MainWindow", "Open Dir", 0));
         radioButton_max->setText(QApplication::translate("MainWindow", "Max", 0));
         radioButton_min->setText(QApplication::translate("MainWindow", "Min", 0));
-        pushButton_read_file->setText(QApplication::translate("MainWindow", "ReadFile", 0));
         pushButton_generate->setText(QApplication::translate("MainWindow", "Generate", 0));
     } // retranslateUi
 

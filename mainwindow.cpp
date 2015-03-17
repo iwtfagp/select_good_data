@@ -2,6 +2,8 @@
 #include "ui_mainwindow.h"
 
 
+
+
 double marker_min, marker_max;
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -9,6 +11,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->treeView->setModel(&model);
+    ui->treeView->setIndentation(20);
+    ui->treeView->setRootIndex(model.setRootPath(""));
+    ui->treeView->setSortingEnabled(true);
+
+
     myPlot_left_hip     = new MyQwtPlot(QString("left_hip"),    ui->qwtPlot_left_hip    );
     myPlot_right_hip    = new MyQwtPlot(QString("right_hip"),   ui->qwtPlot_right_hip   );
     myPlot_left_knee    = new MyQwtPlot(QString("left_knee"),   ui->qwtPlot_left_knee   );
@@ -16,7 +24,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
 
-    test = new MyQwtPlot(QString("wqeqweqw"),ui->qwtPlot_left);
+    test = new MyQwtPlot(QString("ALL"),ui->qwtPlot_All);
+
 
     connect(myPlot_left_hip  , SIGNAL(valueChanged(double,double)), myPlot_left_hip  , SLOT(DrawShadowline(double,double)));
     connect(myPlot_left_hip  , SIGNAL(valueChanged(double,double)), myPlot_right_hip , SLOT(DrawShadowline(double,double)));
@@ -50,44 +59,15 @@ MainWindow::~MainWindow()
 
 
 
-void MainWindow::on_pushButton_read_file_clicked()
+void MainWindow::on_pushButton_open_dir_clicked()
 {
     //1.Read File.
-    QString old_fileName = fileName;
-    fileName = QFileDialog::getOpenFileName(this,
-                                            tr("Open Image"), "_TEST", tr("(*.txt)"));
-    if(fileName.isEmpty())
-        fileName = old_fileName;
-
-    QFile file(fileName);
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-        return;
-
-    out_filename_num = 0;
-
-    //2.Clear vector and prevent errors.
-    v_left_hip.clear();
-    v_right_hip.clear();
-    v_left_knee.clear();
-    v_right_knee.clear();
-
-
-    this->setWindowTitle(fileName);
-
-
-
-    //3.Get file data.
-    while (!file.atEnd()) {
-        QString line = file.readLine();
-        process_line(line);
-    }
-
-    myPlot_left_hip  ->setSamples(1, v_left_hip.data(), (int)v_left_hip.size());
-    myPlot_right_hip ->setSamples(1, v_right_hip.data(), (int)v_right_hip.size());
-    myPlot_left_knee ->setSamples(1, v_left_knee.data(), (int)v_left_knee.size());
-    myPlot_right_knee->setSamples(1, v_right_knee.data(), (int)v_right_knee.size());
-
+    file_dir = QFileDialog::getExistingDirectory(this);
+    qDebug()<<"file_dir = "<<file_dir;
+    ui->treeView->setRootIndex(model.setRootPath(file_dir));
 }
+
+
 void MainWindow::process_line(QString line)
 {
     QStringList qs_list = line.split(',');
@@ -109,10 +89,10 @@ void MainWindow::on_radioButton_max_clicked()
 void MainWindow::on_radioButton_min_clicked()
 {
 
-    myPlot_left_hip->setMaxline(false);
-    myPlot_right_hip->setMaxline(false);
-    myPlot_left_knee->setMaxline(false);
-    myPlot_right_knee->setMaxline(false);
+    myPlot_left_hip     ->setMaxline(false);
+    myPlot_right_hip    ->setMaxline(false);
+    myPlot_left_knee    ->setMaxline(false);
+    myPlot_right_knee   ->setMaxline(false);
 }
 
 void MainWindow::on_pushButton_generate_clicked()
@@ -120,10 +100,35 @@ void MainWindow::on_pushButton_generate_clicked()
 
     //        qDebug()<<"Max = "<<myPlot_left_hip->getMax();
     //        qDebug()<<"Min = "<<myPlot_left_hip->getMin();
-    QString qs_user, qs_date, qs_time;
+
+
     if(fileName.isEmpty())
+    {
+       qDebug()<<"No File";
         return;
+    }
+    if(     myPlot_left_hip  ->getMax() ==  myPlot_left_hip  ->getMin() ||
+            myPlot_right_hip ->getMax() ==  myPlot_right_hip ->getMin() ||
+            myPlot_left_knee ->getMax() ==  myPlot_left_knee ->getMin() ||
+            myPlot_right_knee->getMax() ==  myPlot_right_knee->getMin())
+    {
+        qDebug()<<"No input";
+        return;
+    }
+
+    QString qs_user, qs_date, qs_time;
+    qDebug()<<"fileName = "<<fileName;
+
     QStringList list = fileName.split('/');
+
+
+
+    for(int i = 0; i<list.size()-1; i++)
+    {
+        qDebug()<<list.at(i);
+    }
+
+
     list = list.at(list.size()-1).split('.');
     list = list.at(0).split('_');
     if(!list.isEmpty())
@@ -139,8 +144,13 @@ void MainWindow::on_pushButton_generate_clicked()
         qs_time = "NoTime";
     }
     out_filename_num++;
-    QString output_filename = "after/" + qs_user + "_" + qs_date + "_" + qs_time +
-            "_" + QString::number(out_filename_num) + ".txt";
+    QString output_filename = file_dir + "/" + qs_user + "_" + qs_date + "_" + qs_time +
+            "_" + QString::number(out_filename_num) + ".percent";
+
+
+    qDebug()<<"output_filename = "<<output_filename;
+
+
 
     QFile *out_file = new QFile(output_filename);
 
@@ -247,4 +257,56 @@ void MainWindow::normalization(std::vector<double>* data, const int total_size)
     //    }
 
 
+}
+
+void MainWindow::on_treeView_clicked(const QModelIndex &index)
+{
+
+    QString str_input;
+    str_input = index.data().toString();
+    qDebug()<<"input? = "<<str_input;
+    QStringList strlist_input = str_input.split(".");
+    qDebug()<<"is txt? = "<<strlist_input.at(strlist_input.size()-1);
+    if(strlist_input.at(strlist_input.size()-1) != "txt")
+        return;
+    fileName = index.data().toString();
+
+
+
+    if(fileName.isEmpty())
+    {
+       qDebug()<<"No File";
+        return;
+    }
+
+    QFile file(file_dir + "/" + fileName);
+
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        qDebug()<<"open file fail";
+        return;
+    }
+    out_filename_num = 0;
+
+
+    //2.Clear vector and prevent errors.
+    v_left_hip.clear();
+    v_right_hip.clear();
+    v_left_knee.clear();
+    v_right_knee.clear();
+
+
+    this->setWindowTitle(fileName);
+
+
+    //3.Get file data.
+    while (!file.atEnd()) {
+        QString line = file.readLine();
+        process_line(line);
+    }
+
+    myPlot_left_hip  ->setSamples(1, v_left_hip.data(), (int)v_left_hip.size());
+    myPlot_right_hip ->setSamples(1, v_right_hip.data(), (int)v_right_hip.size());
+    myPlot_left_knee ->setSamples(1, v_left_knee.data(), (int)v_left_knee.size());
+    myPlot_right_knee->setSamples(1, v_right_knee.data(), (int)v_right_knee.size());
 }
