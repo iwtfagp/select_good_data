@@ -1,3 +1,5 @@
+//以後請寫成繼承的方式
+
 #include "myqwtplot.h"
 #include "qwt_plot.h"
 

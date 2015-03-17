@@ -26,6 +26,9 @@ public:
     void setMaxline(bool select);
     int getMax();
     int getMin();
+    QwtPlotCurve *qwt_curve;
+
+
 
 public slots:
     void selectedFun(const QPointF& pos);
@@ -39,7 +42,7 @@ private:
     bool b_max_selected;
     int i_marker_min, i_marker_max;
     QwtPlotMarker *qwt_marker_max, *qwt_marker_min;
-    QwtPlotCurve *qwt_curve;
+
     QwtPlotShapeItem *qwt_item;
     int background_rect_upper_bound, background_rect_lower_bound;
 

@@ -16,6 +16,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->treeView->setRootIndex(model.setRootPath(""));
     ui->treeView->setSortingEnabled(true);
 
+    curve_left_hip      = new QwtPlotCurve();
+    curve_right_hip     = new QwtPlotCurve();
+    curve_left_knee     = new QwtPlotCurve();
+    curve_right_knee    = new QwtPlotCurve();
 
     myPlot_left_hip     = new MyQwtPlot(QString("left_hip"),    ui->qwtPlot_left_hip    );
     myPlot_right_hip    = new MyQwtPlot(QString("right_hip"),   ui->qwtPlot_right_hip   );
@@ -24,7 +28,19 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
 
-    test = new MyQwtPlot(QString("ALL"),ui->qwtPlot_All);
+    ui->qwtPlot_All->setTitle( "Plot ALL" );
+    ui->qwtPlot_All->setCanvasBackground( Qt::white );
+    ui->qwtPlot_All->setAxisScale( QwtPlot::yLeft, 0.0, 10.0 );
+    ui->qwtPlot_All->insertLegend( new QwtLegend() );
+
+
+    //    curve = new QwtPlotCurve();
+    //    curve->setTitle( "Some Points" );
+    //    curve->setPen( Qt::blue, 4 ),
+    //    curve->setRenderHint( QwtPlotItem::RenderAntialiased, true );
+    ui->qwtPlot_All->replot();
+
+    //    test = new MyQwtPlot(QString("ALL"),ui->qwtPlot_All);
 
 
     connect(myPlot_left_hip  , SIGNAL(valueChanged(double,double)), myPlot_left_hip  , SLOT(DrawShadowline(double,double)));
@@ -104,7 +120,7 @@ void MainWindow::on_pushButton_generate_clicked()
 
     if(fileName.isEmpty())
     {
-       qDebug()<<"No File";
+        qDebug()<<"No File";
         return;
     }
     if(     myPlot_left_hip  ->getMax() ==  myPlot_left_hip  ->getMin() ||
@@ -191,7 +207,49 @@ void MainWindow::on_pushButton_generate_clicked()
 
     //    qDebug()<<"v_after_left_hip = "<< v_after_left_hip.size();
 
-    test->setSamples(1, v_after_left_hip.data(), (int)v_after_left_hip.size());
+    //    test->setSamples(1, v_after_left_hip.data(), (int)v_after_left_hip.size());
+
+
+
+    curve_left_hip  ->setTitle( "left_hip" );
+    curve_right_hip ->setTitle( "right_hip" );
+    curve_left_knee ->setTitle( "left_knee" );
+    curve_right_knee->setTitle( "right_knee" );
+
+    //            curve->setRenderHint( QwtPlotItem::RenderAntialiased, true );
+    std::vector<double> time;
+    for(int i = 0; i<v_after_left_hip.size(); i++)
+    {
+        time.push_back(double(i*1.0));
+    }
+
+
+
+
+
+    curve_left_hip->setSamples(time.data(), v_after_left_hip  .data(), v_after_left_hip  .size());
+    curve_left_hip->setPen( Qt::blue, 2 );
+            curve_left_hip->attach( ui->qwtPlot_All );
+
+    curve_right_hip->setSamples(time.data(), v_after_right_hip .data(), v_after_right_hip .size());
+    curve_right_hip->setPen( Qt::red, 2 ),
+            curve_right_hip->attach( ui->qwtPlot_All );
+
+    curve_left_knee->setSamples(time.data(), v_after_left_knee .data(), v_after_left_knee .size());
+    curve_left_knee->setPen( Qt::green, 2 );
+            curve_left_knee->attach( ui->qwtPlot_All );
+
+    curve_right_knee->setSamples(time.data(), v_after_right_knee.data(), v_after_right_knee.size());
+    curve_right_knee->setPen( Qt::darkYellow, 2 );
+            curve_right_knee->attach( ui->qwtPlot_All );
+
+
+    for ( int axis = 0; axis < QwtPlot::axisCnt; axis++ )
+        ui->qwtPlot_All->setAxisAutoScale(axis);
+
+
+
+    ui->qwtPlot_All->replot();
 
     out_file->close();
 
@@ -275,7 +333,7 @@ void MainWindow::on_treeView_clicked(const QModelIndex &index)
 
     if(fileName.isEmpty())
     {
-       qDebug()<<"No File";
+        qDebug()<<"No File";
         return;
     }
 

@@ -4,23 +4,16 @@
 #include <QMainWindow>
 #include <QFileDialog>
 #include <QDir>
-
-#include <QDebug>
-
-#include <qwt_plot_curve.h>
-#include <qwt_plot_picker.h>
-#include <qwt_picker_machine.h>
-#include <qwt_plot_marker.h>
-#include <qwt_plot_shapeitem.h>
-#include <qwt_plot_magnifier.h>
-#include <qwt_plot_canvas.h>
-#include <qwt_legend.h>
-#include <qwt_plot_renderer.h>
-
-#include "MyQwtplot.h"
-
 #include <QFileSystemModel>
 #include <QTreeView>
+#include <QDebug>
+#include "MyQwtplot.h"
+
+
+#include <qwt_plot_curve.h>
+#include <qwt_plot_grid.h>
+#include <qwt_symbol.h>
+#include <qwt_legend.h>
 
 namespace Ui {
 class MainWindow;
@@ -52,7 +45,10 @@ private:
     MyQwtPlot *myPlot_left_hip, *myPlot_right_hip, *myPlot_left_knee, *myPlot_right_knee;
     QString fileName, file_dir;
     int out_filename_num = 0;
-    MyQwtPlot *test;
+//    MyQwtPlot *test;
+
+    QwtPlotCurve *curve_left_hip, *curve_right_hip, *curve_left_knee, *curve_right_knee;
+
     void process_line(QString line);
     QFileSystemModel model;
     QTreeView tree;
