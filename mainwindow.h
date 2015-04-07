@@ -15,6 +15,8 @@
 #include <qwt_symbol.h>
 #include <qwt_legend.h>
 
+#include <numeric>
+
 namespace Ui {
 class MainWindow;
 }
@@ -39,6 +41,8 @@ private slots:
 
     void on_treeView_clicked(const QModelIndex &index);
 
+    void on_pushButton_calibration_clicked();
+
 private:
     Ui::MainWindow *ui;
     std::vector<double> v_left_hip, v_right_hip, v_left_knee, v_right_knee;
@@ -52,6 +56,7 @@ private:
     void process_line(QString line);
     QFileSystemModel model;
     QTreeView tree;
+    double mean_left_hip, mean_right_hip, mean_left_knee, mean_right_knee;
 
 };
 
