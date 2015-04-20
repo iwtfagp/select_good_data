@@ -51,6 +51,7 @@ public:
     QLabel *label_6;
     QLCDNumber *lcdNumber_RightKnee;
     QPushButton *pushButton_calibration;
+    QPushButton *pushButton_calibration_zero;
     QGroupBox *groupBox;
     QGridLayout *gridLayout_2;
     QPushButton *pushButton_open_dir;
@@ -121,47 +122,52 @@ public:
         label = new QLabel(groupBox_2);
         label->setObjectName(QStringLiteral("label"));
 
-        gridLayout->addWidget(label, 1, 0, 1, 1);
+        gridLayout->addWidget(label, 2, 0, 1, 1);
 
         lcdNumber_LeftHip = new QLCDNumber(groupBox_2);
         lcdNumber_LeftHip->setObjectName(QStringLiteral("lcdNumber_LeftHip"));
 
-        gridLayout->addWidget(lcdNumber_LeftHip, 1, 1, 1, 1);
+        gridLayout->addWidget(lcdNumber_LeftHip, 2, 1, 1, 1);
 
         label_2 = new QLabel(groupBox_2);
         label_2->setObjectName(QStringLiteral("label_2"));
 
-        gridLayout->addWidget(label_2, 2, 0, 1, 1);
+        gridLayout->addWidget(label_2, 3, 0, 1, 1);
 
         label_5 = new QLabel(groupBox_2);
         label_5->setObjectName(QStringLiteral("label_5"));
 
-        gridLayout->addWidget(label_5, 3, 0, 1, 1);
+        gridLayout->addWidget(label_5, 4, 0, 1, 1);
 
         lcdNumber_LeftKnee = new QLCDNumber(groupBox_2);
         lcdNumber_LeftKnee->setObjectName(QStringLiteral("lcdNumber_LeftKnee"));
 
-        gridLayout->addWidget(lcdNumber_LeftKnee, 3, 1, 1, 1);
+        gridLayout->addWidget(lcdNumber_LeftKnee, 4, 1, 1, 1);
 
         lcdNumber_RightHip = new QLCDNumber(groupBox_2);
         lcdNumber_RightHip->setObjectName(QStringLiteral("lcdNumber_RightHip"));
 
-        gridLayout->addWidget(lcdNumber_RightHip, 2, 1, 1, 1);
+        gridLayout->addWidget(lcdNumber_RightHip, 3, 1, 1, 1);
 
         label_6 = new QLabel(groupBox_2);
         label_6->setObjectName(QStringLiteral("label_6"));
 
-        gridLayout->addWidget(label_6, 4, 0, 1, 1);
+        gridLayout->addWidget(label_6, 5, 0, 1, 1);
 
         lcdNumber_RightKnee = new QLCDNumber(groupBox_2);
         lcdNumber_RightKnee->setObjectName(QStringLiteral("lcdNumber_RightKnee"));
 
-        gridLayout->addWidget(lcdNumber_RightKnee, 4, 1, 1, 1);
+        gridLayout->addWidget(lcdNumber_RightKnee, 5, 1, 1, 1);
 
         pushButton_calibration = new QPushButton(groupBox_2);
         pushButton_calibration->setObjectName(QStringLiteral("pushButton_calibration"));
 
         gridLayout->addWidget(pushButton_calibration, 0, 0, 1, 2);
+
+        pushButton_calibration_zero = new QPushButton(groupBox_2);
+        pushButton_calibration_zero->setObjectName(QStringLiteral("pushButton_calibration_zero"));
+
+        gridLayout->addWidget(pushButton_calibration_zero, 1, 0, 1, 2);
 
 
         gridLayout_3->addWidget(groupBox_2, 3, 2, 1, 1);
@@ -236,6 +242,7 @@ public:
         label_5->setText(QApplication::translate("MainWindow", "LeftKnee", 0));
         label_6->setText(QApplication::translate("MainWindow", "RightKnee", 0));
         pushButton_calibration->setText(QApplication::translate("MainWindow", "Calibration", 0));
+        pushButton_calibration_zero->setText(QApplication::translate("MainWindow", "zero", 0));
         groupBox->setTitle(QApplication::translate("MainWindow", "Operation Panel", 0));
         pushButton_open_dir->setText(QApplication::translate("MainWindow", "Open Dir", 0));
         radioButton_max->setText(QApplication::translate("MainWindow", "Max", 0));

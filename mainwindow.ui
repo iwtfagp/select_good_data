@@ -113,50 +113,57 @@
        <string>Initial Position</string>
       </property>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="1" column="0">
+       <item row="2" column="0">
         <widget class="QLabel" name="label">
          <property name="text">
           <string>LeftHip</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="1">
+       <item row="2" column="1">
         <widget class="QLCDNumber" name="lcdNumber_LeftHip"/>
        </item>
-       <item row="2" column="0">
+       <item row="3" column="0">
         <widget class="QLabel" name="label_2">
          <property name="text">
           <string>RightHip</string>
          </property>
         </widget>
        </item>
-       <item row="3" column="0">
+       <item row="4" column="0">
         <widget class="QLabel" name="label_5">
          <property name="text">
           <string>LeftKnee</string>
          </property>
         </widget>
        </item>
-       <item row="3" column="1">
+       <item row="4" column="1">
         <widget class="QLCDNumber" name="lcdNumber_LeftKnee"/>
        </item>
-       <item row="2" column="1">
+       <item row="3" column="1">
         <widget class="QLCDNumber" name="lcdNumber_RightHip"/>
        </item>
-       <item row="4" column="0">
+       <item row="5" column="0">
         <widget class="QLabel" name="label_6">
          <property name="text">
           <string>RightKnee</string>
          </property>
         </widget>
        </item>
-       <item row="4" column="1">
+       <item row="5" column="1">
         <widget class="QLCDNumber" name="lcdNumber_RightKnee"/>
        </item>
        <item row="0" column="0" colspan="2">
         <widget class="QPushButton" name="pushButton_calibration">
          <property name="text">
           <string>Calibration</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="2">
+        <widget class="QPushButton" name="pushButton_calibration_zero">
+         <property name="text">
+          <string>zero</string>
          </property>
         </widget>
        </item>

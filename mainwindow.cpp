@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
     mean_right_hip = 0;
     mean_left_knee = 0;
     mean_right_knee = 0;
-
+    out_filename_num = 0;
 
     curve_left_hip      = new QwtPlotCurve();
     curve_right_hip     = new QwtPlotCurve();
@@ -352,7 +352,7 @@ void MainWindow::on_treeView_clicked(const QModelIndex &index)
         qDebug()<<"open file fail";
         return;
     }
-    out_filename_num = 0;
+
 
 
     //2.Clear vector and prevent errors.
@@ -424,6 +424,19 @@ void MainWindow::on_pushButton_calibration_clicked()
     qDebug()<<"v_after_left_hip = "<<mean_right_hip;
     qDebug()<<"v_after_left_hip = "<<mean_left_knee;
     qDebug()<<"v_after_left_hip = "<<mean_right_knee;
+
+    ui->lcdNumber_LeftHip->display(mean_left_hip);
+    ui->lcdNumber_RightHip->display(mean_right_hip);
+    ui->lcdNumber_LeftKnee->display(mean_left_knee);
+    ui->lcdNumber_RightKnee->display(mean_right_knee);
+}
+
+void MainWindow::on_pushButton_calibration_zero_clicked()
+{
+    mean_left_hip   = 0;
+    mean_right_hip  = 0;
+    mean_left_knee  = 0;
+    mean_right_knee = 0;
 
     ui->lcdNumber_LeftHip->display(mean_left_hip);
     ui->lcdNumber_RightHip->display(mean_right_hip);

@@ -43,6 +43,8 @@ private slots:
 
     void on_pushButton_calibration_clicked();
 
+    void on_pushButton_calibration_zero_clicked();
+
 private:
     Ui::MainWindow *ui;
     std::vector<double> v_left_hip, v_right_hip, v_left_knee, v_right_knee;
