@@ -17,21 +17,24 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->treeView->setSortingEnabled(true);
 
 
-    mean_left_hip = 0;
-    mean_right_hip = 0;
-    mean_left_knee = 0;
-    mean_right_knee = 0;
+    calibration_left_hip = 0;
+    calibration_right_hip = 0;
+    calibration_left_knee = 0;
+    calibration_right_knee = 0;
+    calibration_back = 0;
     out_filename_num = 0;
 
     curve_left_hip      = new QwtPlotCurve();
     curve_right_hip     = new QwtPlotCurve();
     curve_left_knee     = new QwtPlotCurve();
     curve_right_knee    = new QwtPlotCurve();
+    curve_back          = new QwtPlotCurve();
 
     myPlot_left_hip     = new MyQwtPlot(QString("left_hip"),    ui->qwtPlot_left_hip    );
     myPlot_right_hip    = new MyQwtPlot(QString("right_hip"),   ui->qwtPlot_right_hip   );
     myPlot_left_knee    = new MyQwtPlot(QString("left_knee"),   ui->qwtPlot_left_knee   );
     myPlot_right_knee   = new MyQwtPlot(QString("right_knee"),  ui->qwtPlot_right_knee  );
+    myPlot_back         = new MyQwtPlot(QString("back"),        ui->qwtPlot_back );
 
 
 
@@ -99,6 +102,7 @@ void MainWindow::process_line(QString line)
     v_right_hip.push_back(qs_list.at(1).toDouble());
     v_left_knee.push_back(qs_list.at(2).toDouble());
     v_right_knee.push_back(qs_list.at(3).toDouble());
+    v_back.push_back(qs_list.at(4).toDouble());
 }
 
 void MainWindow::on_radioButton_max_clicked()
@@ -186,6 +190,7 @@ void MainWindow::on_pushButton_generate_clicked()
     std::vector<double> v_after_right_hip ;
     std::vector<double> v_after_left_knee ;
     std::vector<double> v_after_right_knee;
+    std::vector<double> v_after_back;
 
     for(int i = myPlot_left_hip->getMin(); i < myPlot_left_hip->getMax(); i++)
     {
@@ -193,6 +198,7 @@ void MainWindow::on_pushButton_generate_clicked()
         v_after_right_hip.push_back(v_right_hip.at(i));
         v_after_left_knee.push_back(v_left_knee.at(i));
         v_after_right_knee.push_back(v_right_knee.at(i));
+        v_after_back.push_back(v_back.at(i));
     }
 
 
@@ -203,6 +209,7 @@ void MainWindow::on_pushButton_generate_clicked()
     normalization(&v_after_right_hip, total_point_number);
     normalization(&v_after_left_knee, total_point_number);
     normalization(&v_after_right_knee, total_point_number);
+    normalization(&v_after_back, total_point_number);
 
 
     for(unsigned int i = 0; i < total_point_number; i++)
@@ -210,7 +217,8 @@ void MainWindow::on_pushButton_generate_clicked()
         out<<QString::number(v_after_left_hip.at(i))<<",";
         out<<QString::number(v_after_right_hip.at(i))<<",";
         out<<QString::number(v_after_left_knee.at(i))<<",";
-        out<<QString::number(v_after_right_knee.at(i))<<endl;
+        out<<QString::number(v_after_right_knee.at(i))<<",";
+        out<<QString::number(v_after_back.at(i))<<endl;
     }
 
     //    qDebug()<<"v_after_left_hip = "<< v_after_left_hip.size();
@@ -223,6 +231,7 @@ void MainWindow::on_pushButton_generate_clicked()
     curve_right_hip ->setTitle( "right_hip" );
     curve_left_knee ->setTitle( "left_knee" );
     curve_right_knee->setTitle( "right_knee" );
+    curve_back->setTitle("back");
 
     //            curve->setRenderHint( QwtPlotItem::RenderAntialiased, true );
     std::vector<double> time;
@@ -241,7 +250,7 @@ void MainWindow::on_pushButton_generate_clicked()
 
     curve_right_hip->setSamples(time.data(), v_after_right_hip .data(), v_after_right_hip .size());
     curve_right_hip->setPen( Qt::red, 2 ),
-            curve_right_hip->attach( ui->qwtPlot_All );
+    curve_right_hip->attach( ui->qwtPlot_All );
 
     curve_left_knee->setSamples(time.data(), v_after_left_knee .data(), v_after_left_knee .size());
     curve_left_knee->setPen( Qt::green, 2 );
@@ -250,6 +259,10 @@ void MainWindow::on_pushButton_generate_clicked()
     curve_right_knee->setSamples(time.data(), v_after_right_knee.data(), v_after_right_knee.size());
     curve_right_knee->setPen( Qt::darkYellow, 2 );
     curve_right_knee->attach( ui->qwtPlot_All );
+
+//    curve_right_knee->setSamples(time.data(), v_after_back.data(), v_after_back.size());
+//    curve_right_knee->setPen( Qt::darkYellow, 2 );
+//    curve_right_knee->attach( ui->qwtPlot_All );
 
 
     for ( int axis = 0; axis < QwtPlot::axisCnt; axis++ )
@@ -360,6 +373,7 @@ void MainWindow::on_treeView_clicked(const QModelIndex &index)
     v_right_hip.clear();
     v_left_knee.clear();
     v_right_knee.clear();
+    v_back.clear();
 
 
     this->setWindowTitle(fileName);
@@ -373,10 +387,12 @@ void MainWindow::on_treeView_clicked(const QModelIndex &index)
 
     for(int count_calibration = 0; count_calibration<v_left_hip.size(); count_calibration++)
     {
-         v_left_hip     .at(count_calibration) -= mean_left_hip;
-         v_right_hip    .at(count_calibration) -= mean_right_hip;
-         v_left_knee    .at(count_calibration) -= mean_left_knee;
-         v_right_knee   .at(count_calibration) -= mean_right_knee;
+         v_left_hip     .at(count_calibration) -= calibration_left_hip;
+         v_right_hip    .at(count_calibration) -= calibration_right_hip;
+         v_left_knee    .at(count_calibration) -= calibration_left_knee;
+         v_right_knee   .at(count_calibration) -= calibration_right_knee;
+         v_back         .at(count_calibration) -= calibration_back;
+
     }
 
 
@@ -385,6 +401,7 @@ void MainWindow::on_treeView_clicked(const QModelIndex &index)
     myPlot_right_hip ->setSamples(1, v_right_hip    .data(), (int)v_right_hip.size());
     myPlot_left_knee ->setSamples(1, v_left_knee    .data(), (int)v_left_knee.size());
     myPlot_right_knee->setSamples(1, v_right_knee   .data(), (int)v_right_knee.size());
+    myPlot_back      ->setSamples(1, v_back         .data(), (int)v_back.size());
 }
 
 void MainWindow::on_pushButton_calibration_clicked()
@@ -415,31 +432,31 @@ void MainWindow::on_pushButton_calibration_clicked()
         v_after_left_knee.push_back(v_left_knee.at(i));
         v_after_right_knee.push_back(v_right_knee.at(i));
     }
-    mean_left_hip   = std::accumulate(v_after_left_hip.begin()  , v_after_left_hip.end()    , 0.0)/v_after_left_hip.size();
-    mean_right_hip  = std::accumulate(v_after_right_hip.begin() , v_after_right_hip.end()   , 0.0)/v_after_right_hip.size();
-    mean_left_knee  = std::accumulate(v_after_left_knee.begin() , v_after_left_knee.end()   , 0.0)/v_after_left_knee.size();
-    mean_right_knee = std::accumulate(v_after_right_knee.begin(), v_after_right_knee.end()  , 0.0)/v_after_right_knee.size();
+    calibration_left_hip   = std::accumulate(v_after_left_hip.begin()  , v_after_left_hip.end()    , 0.0)/v_after_left_hip.size();
+    calibration_right_hip  = std::accumulate(v_after_right_hip.begin() , v_after_right_hip.end()   , 0.0)/v_after_right_hip.size();
+    calibration_left_knee  = std::accumulate(v_after_left_knee.begin() , v_after_left_knee.end()   , 0.0)/v_after_left_knee.size();
+    calibration_right_knee = std::accumulate(v_after_right_knee.begin(), v_after_right_knee.end()  , 0.0)/v_after_right_knee.size();
 
-    qDebug()<<"v_after_left_hip = "<<mean_left_hip;
-    qDebug()<<"v_after_left_hip = "<<mean_right_hip;
-    qDebug()<<"v_after_left_hip = "<<mean_left_knee;
-    qDebug()<<"v_after_left_hip = "<<mean_right_knee;
+    qDebug()<<"v_after_left_hip = "<<calibration_left_hip;
+    qDebug()<<"v_after_left_hip = "<<calibration_right_hip;
+    qDebug()<<"v_after_left_hip = "<<calibration_left_knee;
+    qDebug()<<"v_after_left_hip = "<<calibration_right_knee;
 
-    ui->lcdNumber_LeftHip->display(mean_left_hip);
-    ui->lcdNumber_RightHip->display(mean_right_hip);
-    ui->lcdNumber_LeftKnee->display(mean_left_knee);
-    ui->lcdNumber_RightKnee->display(mean_right_knee);
+    ui->lcdNumber_LeftHip->display(calibration_left_hip);
+    ui->lcdNumber_RightHip->display(calibration_right_hip);
+    ui->lcdNumber_LeftKnee->display(calibration_left_knee);
+    ui->lcdNumber_RightKnee->display(calibration_right_knee);
 }
 
 void MainWindow::on_pushButton_calibration_zero_clicked()
 {
-    mean_left_hip   = 0;
-    mean_right_hip  = 0;
-    mean_left_knee  = 0;
-    mean_right_knee = 0;
+    calibration_left_hip   = 0;
+    calibration_right_hip  = 0;
+    calibration_left_knee  = 0;
+    calibration_right_knee = 0;
 
-    ui->lcdNumber_LeftHip->display(mean_left_hip);
-    ui->lcdNumber_RightHip->display(mean_right_hip);
-    ui->lcdNumber_LeftKnee->display(mean_left_knee);
-    ui->lcdNumber_RightKnee->display(mean_right_knee);
+    ui->lcdNumber_LeftHip->display(calibration_left_hip);
+    ui->lcdNumber_RightHip->display(calibration_right_hip);
+    ui->lcdNumber_LeftKnee->display(calibration_left_knee);
+    ui->lcdNumber_RightKnee->display(calibration_right_knee);
 }

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1006</width>
-    <height>723</height>
+    <width>1008</width>
+    <height>741</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -20,94 +20,169 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QGridLayout" name="gridLayout_3">
-    <item row="0" column="0">
-     <widget class="QwtPlot" name="qwtPlot_left_hip">
-      <property name="minimumSize">
-       <size>
-        <width>350</width>
-        <height>150</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>300</width>
-        <height>200</height>
-       </size>
-      </property>
-      <property name="mouseTracking">
-       <bool>false</bool>
-      </property>
-      <property name="autoFillBackground">
-       <bool>false</bool>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Plain</enum>
-      </property>
-      <property name="autoReplot">
-       <bool>false</bool>
-      </property>
-     </widget>
+   <layout class="QGridLayout" name="gridLayout_4">
+    <item row="0" column="0" rowspan="2">
+     <layout class="QGridLayout" name="gridLayout_3">
+      <item row="1" column="0">
+       <widget class="QwtPlot" name="qwtPlot_left_knee">
+        <property name="minimumSize">
+         <size>
+          <width>350</width>
+          <height>150</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>300</width>
+          <height>200</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QwtPlot" name="qwtPlot_right_hip">
+        <property name="minimumSize">
+         <size>
+          <width>350</width>
+          <height>150</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>300</width>
+          <height>200</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QwtPlot" name="qwtPlot_All">
+        <property name="minimumSize">
+         <size>
+          <width>350</width>
+          <height>150</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>300</width>
+          <height>200</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QwtPlot" name="qwtPlot_back">
+        <property name="minimumSize">
+         <size>
+          <width>350</width>
+          <height>150</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>300</width>
+          <height>200</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QwtPlot" name="qwtPlot_left_hip">
+        <property name="minimumSize">
+         <size>
+          <width>350</width>
+          <height>150</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>300</width>
+          <height>200</height>
+         </size>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Plain</enum>
+        </property>
+        <property name="autoReplot">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QwtPlot" name="qwtPlot_right_knee">
+        <property name="minimumSize">
+         <size>
+          <width>350</width>
+          <height>150</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>300</width>
+          <height>200</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
     <item row="0" column="1">
-     <widget class="QwtPlot" name="qwtPlot_right_hip">
-      <property name="minimumSize">
-       <size>
-        <width>350</width>
-        <height>150</height>
-       </size>
+     <widget class="QGroupBox" name="groupBox">
+      <property name="title">
+       <string>Operation Panel</string>
       </property>
-      <property name="maximumSize">
-       <size>
-        <width>300</width>
-        <height>200</height>
-       </size>
-      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <widget class="QPushButton" name="pushButton_open_dir">
+         <property name="text">
+          <string>Open Dir</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QTreeView" name="treeView"/>
+       </item>
+       <item row="4" column="0">
+        <widget class="QRadioButton" name="radioButton_max">
+         <property name="text">
+          <string>Max</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QPushButton" name="pushButton_generate">
+         <property name="text">
+          <string>Generate</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QRadioButton" name="radioButton_min">
+         <property name="text">
+          <string>Min</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </item>
-    <item row="1" column="0" rowspan="2">
-     <widget class="QwtPlot" name="qwtPlot_left_knee">
-      <property name="minimumSize">
-       <size>
-        <width>350</width>
-        <height>150</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>300</width>
-        <height>200</height>
-       </size>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1" rowspan="2">
-     <widget class="QwtPlot" name="qwtPlot_right_knee">
-      <property name="minimumSize">
-       <size>
-        <width>350</width>
-        <height>150</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>300</width>
-        <height>200</height>
-       </size>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="0" colspan="2">
-     <widget class="QwtPlot" name="qwtPlot_All">
-      <property name="minimumSize">
-       <size>
-        <width>400</width>
-        <height>100</height>
-       </size>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="2">
+    <item row="1" column="1">
      <widget class="QGroupBox" name="groupBox_2">
       <property name="title">
        <string>Initial Position</string>
@@ -170,70 +245,18 @@
       </layout>
      </widget>
     </item>
-    <item row="0" column="2" rowspan="3">
-     <widget class="QGroupBox" name="groupBox">
-      <property name="title">
-       <string>Operation Panel</string>
-      </property>
-      <layout class="QGridLayout" name="gridLayout_2">
-       <item row="0" column="0">
-        <widget class="QPushButton" name="pushButton_open_dir">
-         <property name="text">
-          <string>Open Dir</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QTreeView" name="treeView"/>
-       </item>
-       <item row="4" column="0">
-        <widget class="QRadioButton" name="radioButton_max">
-         <property name="text">
-          <string>Max</string>
-         </property>
-         <property name="checkable">
-          <bool>true</bool>
-         </property>
-         <property name="checked">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QPushButton" name="pushButton_generate">
-         <property name="text">
-          <string>Generate</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="0">
-        <widget class="QRadioButton" name="radioButton_min">
-         <property name="text">
-          <string>Min</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
    </layout>
-   <zorder>qwtPlot_left_hip</zorder>
-   <zorder>qwtPlot_right_hip</zorder>
-   <zorder>qwtPlot_left_knee</zorder>
-   <zorder>qwtPlot_right_knee</zorder>
    <zorder>qwtPlot_All</zorder>
    <zorder>groupBox</zorder>
    <zorder>groupBox_2</zorder>
+   <zorder>qwtPlot_back</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1006</width>
+     <width>1008</width>
      <height>22</height>
     </rect>
    </property>

@@ -47,18 +47,17 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    std::vector<double> v_left_hip, v_right_hip, v_left_knee, v_right_knee;
-    MyQwtPlot *myPlot_left_hip, *myPlot_right_hip, *myPlot_left_knee, *myPlot_right_knee;
+    std::vector<double> v_left_hip, v_right_hip, v_left_knee, v_right_knee, v_back;
+    MyQwtPlot *myPlot_left_hip, *myPlot_right_hip, *myPlot_left_knee, *myPlot_right_knee, *myPlot_back;
     QString fileName, file_dir;
     int out_filename_num = 0;
-//    MyQwtPlot *test;
 
-    QwtPlotCurve *curve_left_hip, *curve_right_hip, *curve_left_knee, *curve_right_knee;
+    QwtPlotCurve *curve_left_hip, *curve_right_hip, *curve_left_knee, *curve_right_knee, *curve_back;
 
     void process_line(QString line);
     QFileSystemModel model;
     QTreeView tree;
-    double mean_left_hip, mean_right_hip, mean_left_knee, mean_right_knee;
+    double calibration_left_hip, calibration_right_hip, calibration_left_knee, calibration_right_knee, calibration_back;
 
 };
 
