@@ -9,7 +9,7 @@
 #include <QDebug>
 #include "MyQwtplot.h"
 
-
+#include <QKeyEvent>
 #include <qwt_plot_curve.h>
 #include <qwt_plot_grid.h>
 #include <qwt_symbol.h>
@@ -29,7 +29,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     void normalization(std::vector<double> *data, const int total_size = 10000);
-
+    void keyPressEvent(QKeyEvent* event);
 
 private slots:
 

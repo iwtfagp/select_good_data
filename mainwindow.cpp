@@ -250,7 +250,7 @@ void MainWindow::on_pushButton_generate_clicked()
 
     curve_right_hip->setSamples(time.data(), v_after_right_hip .data(), v_after_right_hip .size());
     curve_right_hip->setPen( Qt::red, 2 ),
-    curve_right_hip->attach( ui->qwtPlot_All );
+            curve_right_hip->attach( ui->qwtPlot_All );
 
     curve_left_knee->setSamples(time.data(), v_after_left_knee .data(), v_after_left_knee .size());
     curve_left_knee->setPen( Qt::green, 2 );
@@ -260,9 +260,9 @@ void MainWindow::on_pushButton_generate_clicked()
     curve_right_knee->setPen( Qt::darkYellow, 2 );
     curve_right_knee->attach( ui->qwtPlot_All );
 
-//    curve_right_knee->setSamples(time.data(), v_after_back.data(), v_after_back.size());
-//    curve_right_knee->setPen( Qt::darkYellow, 2 );
-//    curve_right_knee->attach( ui->qwtPlot_All );
+    //    curve_right_knee->setSamples(time.data(), v_after_back.data(), v_after_back.size());
+    //    curve_right_knee->setPen( Qt::darkYellow, 2 );
+    //    curve_right_knee->attach( ui->qwtPlot_All );
 
 
     for ( int axis = 0; axis < QwtPlot::axisCnt; axis++ )
@@ -387,11 +387,11 @@ void MainWindow::on_treeView_clicked(const QModelIndex &index)
 
     for(int count_calibration = 0; count_calibration<v_left_hip.size(); count_calibration++)
     {
-         v_left_hip     .at(count_calibration) -= calibration_left_hip;
-         v_right_hip    .at(count_calibration) -= calibration_right_hip;
-         v_left_knee    .at(count_calibration) -= calibration_left_knee;
-         v_right_knee   .at(count_calibration) -= calibration_right_knee;
-         v_back         .at(count_calibration) -= calibration_back;
+        v_left_hip     .at(count_calibration) -= calibration_left_hip;
+        v_right_hip    .at(count_calibration) -= calibration_right_hip;
+        v_left_knee    .at(count_calibration) -= calibration_left_knee;
+        v_right_knee   .at(count_calibration) -= calibration_right_knee;
+        v_back         .at(count_calibration) -= calibration_back;
 
     }
 
@@ -459,4 +459,15 @@ void MainWindow::on_pushButton_calibration_zero_clicked()
     ui->lcdNumber_RightHip->display(calibration_right_hip);
     ui->lcdNumber_LeftKnee->display(calibration_left_knee);
     ui->lcdNumber_RightKnee->display(calibration_right_knee);
+}
+void MainWindow::keyPressEvent(QKeyEvent* event)
+{
+    if(event->key() == Qt::Key_Control)
+    {
+        //        ui->pushButton_newFile->click();
+        //        ui->textBrowser->append("Recording");
+        ui->pushButton_generate->click();
+        //        player->play();
+    }
+
 }
